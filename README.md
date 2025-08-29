@@ -1,2 +1,2 @@
-# Trabalho 1 na disciplina de econometria do mestrado em economia
+# Este repositório contém as análises de microeconometria do mestrado em economia.
 Esté trabalho é referente a uma disciplina de econometria.
