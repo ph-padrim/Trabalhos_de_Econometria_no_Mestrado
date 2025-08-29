@@ -1,0 +1,21 @@
+# Ignorar arquivos de dados
+*.csv
+*.xlsx
+*.xls
+*.dta
+*.sav
+*.rdata
+*.rda
+
+# Ignorar pastas com dados
+dados/
+data/
+dataset/
+
+# Ignorar arquivos sensíveis
+.env
+config.yml
+
+# Ignorar arquivos temporários
+*.tmp
+*.log
