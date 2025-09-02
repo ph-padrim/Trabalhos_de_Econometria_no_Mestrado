@@ -19,6 +19,7 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(quantreg)
+library(oaxaca)
 
 # Carregando a base de dados da RAIS de firmas de 2021
 
@@ -243,17 +244,27 @@ mqo_grande <- lm(produtividade ~ qtd_vinc_atv + nivel_tec + idade + sexo_med +
                    data = subset(base_privado, tamanho_cat == "grande"))
 summary(mqo_grande)
 
+
+
+
+
 # ------------------------------------------------------------------------------
 #                           Regressão quantílica
 # ------------------------------------------------------------------------------
 
-quant_geral_10 <- rq(produtividade ~ qtd_vinc_atv + tamanho + nivel_tec + idade + 
+# Selecionar 0,1% aleatoriamente
+
+amostra_privado <- base_privado %>% 
+  sample_frac(0.0001)
+
+quant_geral_10 <- rq(formula = produtividade ~ qtd_vinc_atv + tamanho + nivel_tec + idade + 
                                     sexo_med + raca_cor_med + idade_med +  
                                     tempo_emprego_med + ate_fundamental_med + 
                                     superior_med, tau = 0.1, method = "br", 
-                                    data = base_privado)
+                                    data = amostra_privado)
 summary(quant_geral_10)
 plot(summary(quant_geral_10))
+plot(quant_geral_10)
 
 quant_geral_50 <- rq(produtividade ~ qtd_vinc_atv + tamanho + nivel_tec + idade + 
                                     sexo_med + raca_cor_med + idade_med + 
@@ -271,8 +282,16 @@ quant_geral_90 <- rq(produtividade ~ qtd_vinc_atv + tamanho + nivel_tec + idade 
 summary(quant_geral_90)
 plot(summary(quant_geral_90))
 
+# ------------------------------------------------------------------------------
+#                           Decomposição
+# ------------------------------------------------------------------------------
+
+
+
 # ==============================================================================
 #                              FIM
 # ==============================================================================
+
+
 
 
