@@ -19,3 +19,5 @@ config.yml
 # Ignorar arquivos temporários
 *.tmp
 *.log
+
+/home/ph-padrim/Área de trabalho/GitHub/Pessoal/Trabalho_de_Econometria_no_Mestrado/trabalho_3.ipynb
