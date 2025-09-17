@@ -53,7 +53,7 @@ library(oaxaca)
 
 # Carregando a base de dados da RAIS de firmas de 2021
 
-base <- read.csv("/home/ph-padrim/Downloads/rais_firma_2021.csv",
+base <- read.csv("/home/ph-padrim/Área de trabalho/GitHub/Pessoal/Trabalho_de_Econometria_no_Mestrado/rais_firma_2021_aula.csv",
                  fileEncoding = "cp1252",
                  sep = ",",
                  dec = ".")

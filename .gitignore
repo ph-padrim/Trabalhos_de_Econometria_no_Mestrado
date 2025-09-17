@@ -27,3 +27,4 @@ config.yml
 # Ignorar um arquivo específico
 
 trabalho_3.ipynb
+.Rproj.user
