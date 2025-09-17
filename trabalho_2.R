@@ -1,9 +1,9 @@
 # ==============================================================================
-#                EXERCÍCIO 1 DE MICROECONOMETRIA APLICADA 
+#                  EXERCÍCIO 1 DE MICROECONOMETRIA APLICADA 
 # ==============================================================================
 
 # ------------------------------------------------------------------------------ 
-#                         Descrição do Trabalho
+#                          Descrição do Trabalho
 #
 #   Foi utilizada a base de dados da RAIS com informações de firmas de 2021, 
 # disponibilizada no drive da disciplina). A ideia do trabalho é fazer análises 
@@ -11,6 +11,19 @@
 # espaciais. Por fim elaborar um relatório com aplicações livres de: (i) 
 # análises não-paramétricas; (ii) regressões quantílicas; (iii) decomposição de 
 # Oaxaca-Blinder.
+#
+# Seções: (i) Pacotes utilizados; (ii) Kdensity (base completa); 
+# (iii) Kdensity (base apenas das empresas privadas); (iv) Regressão kernel;
+# (v) MQO; (vi) Regressão quantílica; (vii) Decomposição de Oaxaca-Blinder
+#
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+#                             Início do script
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+#                             Pacotes utilizados
 # ------------------------------------------------------------------------------
 
 # Carregando pacotes
@@ -19,7 +32,24 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(quantreg)
+
+# Criar diretório pessoal para bibliotecas R
+
+dir.create("~/R/library", recursive = TRUE, showWarnings = FALSE)
+
+# Instalar o pacote no diretório pessoal
+
+install.packages("oaxaca", lib = "~/R/library")
+
+# Adicionar ao caminho de bibliotecas
+
+.libPaths(c("~/R/library", .libPaths()))
+
+# Carregar o pacote
+
 library(oaxaca)
+
+# ------------------- Carregamento da base de dados ----------------------------
 
 # Carregando a base de dados da RAIS de firmas de 2021
 
@@ -72,8 +102,8 @@ base_privado %>%
   theme_minimal() +
   xlim(0,100)
 
-# Kdensity do sexo majoritário. Se a empresas possui um percentual maior de 50% 
-# de funcionários do sexo feminino, logo ele é classificada como sexo_majoritario 
+#   Kdensity do sexo majoritário. Se a empresas possuem um percentual maior de 50% 
+# de funcionários do sexo feminino, logo ela é classificada como sexo_majoritario =
 # "Feminino". Caso contrário, sexo_majoritario recebe a classificação "Masculino"
 
 base_privado <- base_privado %>%
@@ -103,7 +133,7 @@ base_privado %>%
   theme_minimal() +
   xlim(0,50)
 
-# Criando uma nova variável para discriminar o tamonho das empresas
+# Criando uma nova variável para discriminar o tamanho das empresas
 
 base_privado <- base_privado %>%
   mutate(tamanho_cat = case_when(
@@ -244,15 +274,12 @@ mqo_grande <- lm(produtividade ~ qtd_vinc_atv + nivel_tec + idade + sexo_med +
                    data = subset(base_privado, tamanho_cat == "grande"))
 summary(mqo_grande)
 
-
-
-
-
 # ------------------------------------------------------------------------------
 #                           Regressão quantílica
 # ------------------------------------------------------------------------------
 
-# Selecionar 0,1% aleatoriamente
+# Selecionar 0,1% da base de empresas privadas aleatoriamente (por questões de 
+# processamento).
 
 amostra_privado <- base_privado %>% 
   sample_frac(0.0001)
@@ -283,7 +310,7 @@ summary(quant_geral_90)
 plot(summary(quant_geral_90))
 
 # ------------------------------------------------------------------------------
-#                           Decomposição
+#                        Decomposição de Oaxaca-Blinder
 # ------------------------------------------------------------------------------
 
 
