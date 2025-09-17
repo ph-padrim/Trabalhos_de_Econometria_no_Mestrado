@@ -2,6 +2,7 @@
 
 *.csv
 *.xlsx
+!dicionario_firmas_completas.xlsx
 *.xls
 *.dta
 *.sav
