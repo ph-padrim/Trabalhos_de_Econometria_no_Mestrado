@@ -4,7 +4,7 @@ Este repositório contém uma coleção de projetos de econometria desenvolvidos
 
 ## Sumário dos Trabalhos
 
-### 1. Trabalho 1 de Microeconometria: Fatores da Produtividade das Firmas no Brasil
+### 1. Trabalho 4 de Econometria: Fatores da Produtividade das Firmas no Brasil
 
 **Metodologia:**
 
