@@ -38,4 +38,4 @@ Este trabalho utilizou o modelo de Mínimos Quadrados Ordinários (MQO) para ana
 
 
 
->>>>>>> origin/main
+
