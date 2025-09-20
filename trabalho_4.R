@@ -23,7 +23,7 @@
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-#                             Pacotes utilizados
+#                             Pacotes utilizados no exercício
 # ------------------------------------------------------------------------------
 
 # Carregando pacotes
@@ -32,21 +32,6 @@ library(readr)
 library(dplyr)
 library(ggplot2)
 library(quantreg)
-
-# Criar diretório pessoal para bibliotecas R
-
-dir.create("~/R/library", recursive = TRUE, showWarnings = FALSE)
-
-# Instalar o pacote no diretório pessoal
-
-install.packages("oaxaca", lib = "~/R/library")
-
-# Adicionar ao caminho de bibliotecas
-
-.libPaths(c("~/R/library", .libPaths()))
-
-# Carregar o pacote
-
 library(oaxaca)
 
 # ------------------- Carregamento da base de dados ----------------------------
